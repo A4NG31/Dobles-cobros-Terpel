@@ -526,7 +526,7 @@ if uploaded_file is None:
             <li>✅ Mismo Establecimiento, Placa, Valor Servicio y Valor Pagado</li>
             <li>⏰ Diferencia de tiempo ≤ 10 minutos</li>
             <li>✅ Estado = "Exitosa"</li>
-            <li>🆔 IDs diferentes</li>
+            <li>🆔 ID Transaction diferentes</li>
         </ul>
         <p><strong>4.</strong> Revisa los resultados en el dashboard y descarga el análisis</p>
     </div>
@@ -537,6 +537,6 @@ st.markdown("""
 <div class="footer">
     <hr style="border: 1px solid var(--gopass-light-gray); margin: 2rem 0;">
     <p><strong>🚀 GoPass Analytics Platform</strong> | Validador de Dobles Cobros Terpel v2.0</p>
-    <p>Desarrollado por <strong>Angel Torres</strong> | © 2024 GoPass</p>
+    <p>Desarrollado por <strong>Angel Torres</strong> | © 2025 GoPass</p>
 </div>
 """, unsafe_allow_html=True)
