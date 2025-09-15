@@ -383,10 +383,10 @@ if uploaded_file is not None and st.session_state.datos_procesados and st.sessio
     col1, col2, col3, col4, col5 = st.columns(5)
     
     with col1:
-    st.metric(
-        label="TOTAL REGISTROS BRUTOS",
-        value=f"{st.session_state.stats['total_registros_bruto']:,}".replace(",", ".")
-    )
+        st.metric(
+            label="TOTAL REGISTROS BRUTOS",
+            value=f"{st.session_state.stats['total_registros_bruto']:,}".replace(",", ".")
+        )
 
     with col2:
         st.metric(
