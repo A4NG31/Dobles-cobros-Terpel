@@ -372,11 +372,12 @@ if uploaded_file is not None and st.session_state.datos_procesados and st.sessio
     st.markdown("---")
     st.markdown("### 📊 Dashboard de Resultados")
     
+    # Protección: si stats no existe, usar dict vacío
+    stats = st.session_state.get("stats", {})
+    
     # Métricas principales
     col1, col2, col3, col4, col5 = st.columns(5)
     
-   stats = st.session_state.get("stats", {})
-
     with col1:
         st.metric(
             label="TOTAL REGISTROS BRUTOS",
@@ -386,26 +387,27 @@ if uploaded_file is not None and st.session_state.datos_procesados and st.sessio
     with col2:
         st.metric(
             label="TOTAL REGISTROS",
-            value=f"{st.session_state.stats['total_registros']:,}".replace(",", ".")
+            value=f"{stats.get('total_registros', 0):,}".replace(",", ".")
         )
     
     with col3:
         st.metric(
             label="DOBLES COBROS",
-            value=f"{st.session_state.stats['dobles_cobros']:,}".replace(",", ".")
+            value=f"{stats.get('dobles_cobros', 0):,}".replace(",", ".")
         )
     
     with col4:
         st.metric(
             label="% DOBLES COBROS",
-            value=f"{st.session_state.stats['porcentaje_dobles']:.2f}%"
+            value=f"{stats.get('porcentaje_dobles', 0):.2f}%"
         )
     
     with col5:
         st.metric(
             label="VALOR TOTAL DOBLES",
-            value=f"${st.session_state.stats['valor_total_dobles']:,}".replace(",", ".")
+            value=f"${stats.get('valor_total_dobles', 0):,}".replace(",", ".")
         )
+
         
     # Gráficos
     col1, col2 = st.columns(2)
