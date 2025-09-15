@@ -350,6 +350,10 @@ if uploaded_file is not None and not st.session_state.datos_procesados:
         dobles_cobros = len(st.session_state.df_final[st.session_state.df_final['Novedad'] == 'DOBLE COBRO'])
         porcentaje_dobles = (dobles_cobros/total_registros*100) if total_registros > 0 else 0
         valor_total_dobles = st.session_state.df_final[st.session_state.df_final['Novedad'] == 'DOBLE COBRO']['Valor Pagado'].sum()
+
+        # Después de cargar y filtrar los datos
+        total_registros_bruto = len(df)  # <-- los 7070 brutos
+        total_registros = len(df_filtrado)  # <-- los 6268 filtrados
         
         # Al guardar estadísticas agrega el bruto
         st.session_state.stats = {
