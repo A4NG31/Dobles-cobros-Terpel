@@ -292,6 +292,10 @@ if uploaded_file is not None and not st.session_state.datos_procesados:
         # Crear DataFrame
         columnas = data[0]
         df = pd.DataFrame(data[1:], columns=columnas)
+        
+        # Guardar total bruto antes de filtros
+        total_registros_bruto = len(df)
+
 
         # Procesamiento principal
         with col2:
