@@ -372,15 +372,15 @@ if uploaded_file is not None and st.session_state.datos_procesados and st.sessio
     st.markdown("---")
     st.markdown("### 📊 Dashboard de Resultados")
     
-    stats = st.session_state.stats
-    
     # Métricas principales
     col1, col2, col3, col4, col5 = st.columns(5)
     
+   stats = st.session_state.get("stats", {})
+
     with col1:
         st.metric(
             label="TOTAL REGISTROS BRUTOS",
-            value=f"{st.session_state.stats['total_registros_bruto']:,}".replace(",", ".")
+            value=f"{stats.get('total_registros_bruto', 0):,}".replace(",", ".")
         )
 
     with col2:
