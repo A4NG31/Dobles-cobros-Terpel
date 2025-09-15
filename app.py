@@ -271,10 +271,13 @@ if uploaded_file is not None and not st.session_state.datos_procesados:
                 progress_bar = st.progress(0)
                 status_text = st.empty()
         
-        # Cargar archivo
+       # Cargar archivo
         wb = load_workbook(uploaded_file, read_only=True)
         ws = wb.active
         total_filas = ws.max_row
+        
+        # Guardar total bruto antes de filtros (quitando encabezado)
+        total_registros_bruto = total_filas - 1  
         
         data = []
         for i, row in enumerate(ws.iter_rows(values_only=True), start=1):
@@ -289,9 +292,6 @@ if uploaded_file is not None and not st.session_state.datos_procesados:
         # Crear DataFrame
         columnas = data[0]
         df = pd.DataFrame(data[1:], columns=columnas)
-
-        # Guardar total bruto antes de filtros
-        total_registros_bruto = len(df)
 
         # Procesamiento principal
         with col2:
