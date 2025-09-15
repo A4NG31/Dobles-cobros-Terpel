@@ -290,6 +290,9 @@ if uploaded_file is not None and not st.session_state.datos_procesados:
         columnas = data[0]
         df = pd.DataFrame(data[1:], columns=columnas)
         
+        # Guardar total bruto antes de filtros
+        total_registros_bruto = len(df)
+        
         # Procesamiento principal
         with col2:
             st.markdown("**🔍 Analizando dobles cobros...**")
@@ -348,7 +351,9 @@ if uploaded_file is not None and not st.session_state.datos_procesados:
         porcentaje_dobles = (dobles_cobros/total_registros*100) if total_registros > 0 else 0
         valor_total_dobles = st.session_state.df_final[st.session_state.df_final['Novedad'] == 'DOBLE COBRO']['Valor Pagado'].sum()
         
+        # Al guardar estadísticas agrega el bruto
         st.session_state.stats = {
+            'total_registros_bruto': total_registros_bruto,
             'total_registros': total_registros,
             'dobles_cobros': dobles_cobros,
             'porcentaje_dobles': porcentaje_dobles,
