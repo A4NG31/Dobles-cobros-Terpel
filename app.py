@@ -384,13 +384,13 @@ if uploaded_file is not None and st.session_state.datos_procesados and st.sessio
     
     with col1:
         st.metric(
-            label="TOTAL REGISTROS BRUTOS",
+            label="TOTAL REGISTROS",
             value=f"{stats.get('total_registros_bruto', 0):,}".replace(",", ".")
         )
 
     with col2:
         st.metric(
-            label="TOTAL REGISTROS",
+            label="TOTAL REGISTROS FILTRADOS",
             value=f"{stats.get('total_registros', 0):,}".replace(",", ".")
         )
     
@@ -408,7 +408,7 @@ if uploaded_file is not None and st.session_state.datos_procesados and st.sessio
     
     with col5:
         st.metric(
-            label="VALOR TOTAL DOBLES",
+            label="VALOR TOTAL DOBLES COBROS",
             value=f"${stats.get('valor_total_dobles', 0):,}".replace(",", ".")
         )
 
