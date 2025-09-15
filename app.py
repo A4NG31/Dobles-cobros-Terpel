@@ -380,40 +380,38 @@ if uploaded_file is not None and st.session_state.datos_procesados and st.sessio
     stats = st.session_state.stats
     
     # Métricas principales
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
     
     with col1:
-        st.markdown(f"""
-        <div class="metric-card">
-            <div class="metric-value">{stats['total_registros']:,}</div>
-            <div class="metric-label">Total Registros</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
+    st.metric(
+        label="TOTAL REGISTROS BRUTOS",
+        value=f"{st.session_state.stats['total_registros_bruto']:,}".replace(",", ".")
+    )
+
     with col2:
-        st.markdown(f"""
-        <div class="metric-card" style="border-left-color: var(--gopass-red);">
-            <div class="metric-value" style="color: var(--gopass-red);">{stats['dobles_cobros']:,}</div>
-            <div class="metric-label">Dobles Cobros</div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.metric(
+            label="TOTAL REGISTROS",
+            value=f"{st.session_state.stats['total_registros']:,}".replace(",", ".")
+        )
     
     with col3:
-        st.markdown(f"""
-        <div class="metric-card" style="border-left-color: var(--gopass-orange);">
-            <div class="metric-value" style="color: var(--gopass-orange);">{stats['porcentaje_dobles']:.2f}%</div>
-            <div class="metric-label">% Dobles Cobros</div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.metric(
+            label="DOBLES COBROS",
+            value=f"{st.session_state.stats['dobles_cobros']:,}".replace(",", ".")
+        )
     
     with col4:
-        st.markdown(f"""
-        <div class="metric-card" style="border-left-color: var(--gopass-green);">
-            <div class="metric-value" style="color: var(--gopass-green);">${stats['valor_total_dobles']:,.0f}</div>
-            <div class="metric-label">Valor Total Dobles</div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.metric(
+            label="% DOBLES COBROS",
+            value=f"{st.session_state.stats['porcentaje_dobles']:.2f}%"
+        )
     
+    with col5:
+        st.metric(
+            label="VALOR TOTAL DOBLES",
+            value=f"${st.session_state.stats['valor_total_dobles']:,}".replace(",", ".")
+        )
+        
     # Gráficos
     col1, col2 = st.columns(2)
     
